@@ -31,8 +31,11 @@ module.exports  = function(app) {
   app.get(`${urlApiBase}`, (req, res) => {
     log(`GET ${req.url}`); log(req.query);
 
-    const start = startPage(+req.query.page, +req.query.pageSize) || 0;
-    const end = endPage(+req.query.page, +req.query.pageSize) || 10;
+    const page = +req.query.page || 1;
+    const pageSize = +req.query.pageSize || 10;
+
+    const start = startPage(page, pageSize);
+    const end = endPage(page, pageSize);
 
     let records = select('people');
 
