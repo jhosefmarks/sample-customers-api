@@ -56,7 +56,7 @@ module.exports  = function(app) {
     if (req.query.nickname) { records = like(records, 'nickname', req.query.nickname); }
     if (req.query.email) { records = like(records, 'email', req.query.email); }
     if (req.query.city) { records = like(records, 'city', req.query.city); }
-    if (req.query.genre) { records = like(records, 'genre', req.query.genre); }
+    if (req.query.genre) { records = where(records, 'genre', req.query.genre); }
 
     if (req.query.status) {
       let recordsWithStatus = [];
