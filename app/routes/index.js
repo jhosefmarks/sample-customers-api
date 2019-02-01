@@ -7,6 +7,7 @@ const endPage = (page, pageSize) => startPage(page, pageSize) + pageSize;
 
 const select = table => db[table];
 const like = (records, field, value) => records.filter(record => record[field] && record[field].toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+const where = (records, field, value) => records.filter(record => record[field] && record[field].toLocaleLowerCase() === value.toLocaleLowerCase());
 const find = (records, field, value) => records.find(record => record[field] === value);
 
 const removeDuplicates = records => records.filter((record, index, self) =>
@@ -61,7 +62,7 @@ module.exports  = function(app) {
       let recordsWithStatus = [];
 
       req.query.status.split(',').forEach(status => {
-        recordsWithStatus = [...recordsWithStatus, ...like(records, 'status', status)]
+        recordsWithStatus = [...recordsWithStatus, ...where(records, 'status', status)]
       });
 
       records = recordsWithStatus;
