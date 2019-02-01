@@ -46,7 +46,7 @@ module.exports  = function(app) {
         ...like(records, 'nickname', req.query.search),
         ...like(records, 'email', req.query.search),
         ...like(records, 'city', req.query.search),
-        ...like(records, 'genre', req.query.search)
+        ...where(records, 'genre', req.query.search)
       ];
 
       records = removeDuplicates(records);
