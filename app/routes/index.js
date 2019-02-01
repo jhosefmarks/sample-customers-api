@@ -57,6 +57,16 @@ module.exports  = function(app) {
     if (req.query.city) { records = like(records, 'city', req.query.city); }
     if (req.query.genre) { records = like(records, 'genre', req.query.genre); }
 
+    if (req.query.status) {
+      let recordsWithStatus = [];
+
+      req.query.status.split(',').forEach(status => {
+        recordsWithStatus = [...recordsWithStatus, ...like(records, 'status', status)]
+      });
+
+      records = recordsWithStatus;
+    }
+
     const hasNext = records.length > end;
 
     records = [... records.slice(start, end)];
