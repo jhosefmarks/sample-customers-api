@@ -1,7 +1,12 @@
-const express = require('express');
-const app = express();
-const routes = require('../app/routes');
+const bodyParser = require('body-parser');
 const cors = require('cors');
+const express = require('express');
+const helmet = require('helmet')
+const routes = require('../app/routes');
+
+const app = express();
+
+app.use(helmet());
 
 app.use(cors({
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -10,6 +15,9 @@ app.use(cors({
   credentials: true,
   origin: '*'
 }));
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 routes(app);
 

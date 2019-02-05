@@ -10,6 +10,8 @@ const like = (records, field, value) => records.filter(record => record[field] &
 const where = (records, field, value) => records.filter(record => record[field] && record[field].toLocaleLowerCase() === value.toLocaleLowerCase());
 const find = (records, field, value) => records.find(record => record[field] === value);
 
+const insert = (table, record) => db[table].push(record);
+
 const removeDuplicates = records => records.filter((record, index, self) =>
   index === self.findIndex(r => (
     r.place === record.place && r.id === record.id
@@ -92,13 +94,51 @@ module.exports  = function(app) {
     log(`GET ${req.url}`); log(req.params);
 
     const people = select('people');
-    const person = find(people, 'id', +req.params.id);
+    const person = find(people, 'id', req.params.id);
 
     if (person) {
       res.send(person);
     } else {
       res.status(404).send(errorGetNotFound(`Person`));
     }
+  });
+
+  app.post(`${urlApiBase}`, (req, res) => {
+    log(`POST ${req.url}`); log(req.body);
+
+    const person = req.body || {};
+    const errors = [];
+
+    person.id = ((new Date()).getTime()).toString();
+
+    if (!person.name) { errors.push('Name is required.'); }
+
+    if (!person.email) { errors.push('E-mail is required.'); }
+    if (person.email && !person.email.includes('@')) { errors.push('Invalid e-mail.'); }
+
+    if (!person.status) { errors.push('Status is required.'); }
+    if (person.status && ![ 'active', 'inactive' ].includes(person.status.toLocaleLowerCase())) {
+      errors.push('Invalid values for Status.');
+    }
+
+    if (errors.length > 0) {
+      const errorMsg = responseMsg(400, 'Bad Request.', 'Invalid resource.');
+
+      errorMsg.details = [];
+
+      errors.forEach(error => errorMsg.details.push(responseMsg('0001', error, error)));
+
+      res.status(400).send(errorMsg);
+      return;
+    }
+
+    if (!(person.dependents instanceof Array)) {
+      person.dependents = [];
+    }
+
+    insert('people', person);
+
+    res.status(201).send(person);
   });
 
   app.all('/*', function(req, res) {

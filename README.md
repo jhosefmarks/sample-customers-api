@@ -1,13 +1,25 @@
-## Sample customers API
+# Sample customers API
 
 A sample for practice.
 
-## APIs
+# APIs
 
+## List all people
+
+```
 GET https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people
+```
 
-List all people.
+## Get a person data
 
+```
 GET https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people/:id
+```
 
-Get a person data.
+## Add new person
+
+```
+POST https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people
+
+{ "name": "name", "email": "email@email.com", "status": "Active" }
+```
