@@ -2,7 +2,7 @@ const people = [
   {
     "id": "0148093543698",
     "name": "Ronaldo Nascimento Filho",
-    "birthdate": "1980-11-01",
+    "birthdate": "1980-11-01T00:00:00-00:00",
     "genre": "Male",
     "city": "São Paulo",
     "status": "Active",
@@ -56,7 +56,7 @@ const people = [
   {
     "id": "0248093584089",
     "name": "Nivalda Oliveira",
-    "birthdate": "1997-01-21",
+    "birthdate": "1997-01-21T00:00:00-00:00",
     "genre": "Female",
     "city": "Joinville",
     "dependents": [],
@@ -74,7 +74,7 @@ const people = [
   {
     "id": "0348093615904",
     "name": "Leonardo Silveira",
-    "birthdate": "1995-07-15",
+    "birthdate": "1995-07-15T00:00:00-00:00",
     "genre": "Male",
     "city": "Joinville",
     "dependents": [],
@@ -92,7 +92,7 @@ const people = [
   {
     "id": "0448093615904",
     "name": "Rafaela Gonçalvez Dias",
-    "birthdate": "1993-05-20",
+    "birthdate": "1993-05-20T00:00:00-00:00",
     "genre": "Female",
     "city": "São Bento",
     "dependents": [],
@@ -110,7 +110,7 @@ const people = [
   {
     "id": "0548093770300",
     "name": "Marcos Paulo Silva",
-    "birthdate": "1998-05-11",
+    "birthdate": "1998-05-11T00:00:00-00:00",
     "genre": "Other",
     "city": "Joinville",
     "dependents": [],
@@ -128,7 +128,7 @@ const people = [
   {
     "id": "0648093812893",
     "name": "João Severino",
-    "birthdate": "1995-10-07",
+    "birthdate": "1995-10-07T00:00:00-00:00",
     "genre": "Male",
     "city": "São Francisco",
     "status": "Active",
@@ -154,7 +154,7 @@ const people = [
   {
     "id": "0748093840433",
     "name": "José Marcos Cardoso",
-    "birthdate": "1986-08-01",
+    "birthdate": "1986-08-01T00:00:00-00:00",
     "genre": "Male",
     "city": "Araquari",
     "status": "Inactive",
@@ -194,7 +194,7 @@ const people = [
   {
     "id": "0848094890811",
     "name": "Karlo Rodrigues",
-    "birthdate": "1989-12-28",
+    "birthdate": "1989-12-28T00:00:00-00:00",
     "genre": "Male",
     "city": "São Paulo",
     "dependents": [],
@@ -212,7 +212,7 @@ const people = [
   {
     "id": "0948094960731",
     "name": "Filipa Assunção",
-    "birthdate": "1985-02-18",
+    "birthdate": "1985-02-18T00:00:00-00:00",
     "genre": "Female",
     "city": "Campinas",
     "dependents": [],
@@ -230,7 +230,7 @@ const people = [
   {
     "id": "1048094984943",
     "name": "Washington Camilo Domingues",
-    "birthdate": "1990-03-02",
+    "birthdate": "1990-03-02T00:00:00-00:00",
     "genre": "Male",
     "city": "Osasco",
     "dependents": [],
@@ -248,7 +248,7 @@ const people = [
   {
     "id": "1148095011290",
     "name": "Alice Flores Gentil",
-    "birthdate": "1990-04-17",
+    "birthdate": "1990-04-17T00:00:00-00:00",
     "genre": "Female",
     "city": "São Paulo",
     "status": "Active",
@@ -274,7 +274,7 @@ const people = [
   {
     "id": "1248095039078",
     "name": "Nilson Lacerda de Meireles",
-    "birthdate": "1989-01-10",
+    "birthdate": "1989-01-10T00:00:00-00:00",
     "genre": "Male",
     "city": "São Paulo",
     "dependents": [],
@@ -292,7 +292,7 @@ const people = [
   {
     "id": "1348095069802",
     "name": "Flavio Menezes",
-    "birthdate": "1980-04-12",
+    "birthdate": "1980-04-12T00:00:00-00:00",
     "genre": "Male",
     "city": "São Paulo",
     "dependents": [],
@@ -310,7 +310,7 @@ const people = [
   {
     "id": "1448095103604",
     "name": "Jamir Oliveira Peixoto",
-    "birthdate": "1986-12-23",
+    "birthdate": "1986-12-23T00:00:00-00:00",
     "genre": "Other",
     "city": "São Paulo",
     "dependents": [],
@@ -328,7 +328,7 @@ const people = [
   {
     "id": "1548095119839",
     "name": "Mateus Padilha",
-    "birthdate": "1990-08-30",
+    "birthdate": "1990-08-30T00:00:00-00:00",
     "genre": "Male",
     "city": "São Paulo",
     "dependents": [],
@@ -346,7 +346,7 @@ const people = [
   {
     "id": "1648095136211",
     "name": "Leonardo Pinheiro da Silva",
-    "birthdate": "1990-08-25",
+    "birthdate": "1990-08-25T00:00:00-00:00",
     "genre": "Male",
     "city": "São Paulo",
     "dependents": [],
@@ -364,7 +364,7 @@ const people = [
   {
     "id": "1748423226478",
     "name": "Benício Rafael Emanuel Melo",
-    "birthdate": "1997-11-09",
+    "birthdate": "1997-11-09T00:00:00-00:00",
     "genre": "Other",
     "city": "São Paulo",
     "dependents": [],
@@ -382,7 +382,7 @@ const people = [
   {
     "id": "1848423398317",
     "name": "Gabriela Evelyn Peixoto",
-    "birthdate": "1997-08-12",
+    "birthdate": "1997-08-12T00:00:00-00:00",
     "genre": "Female",
     "city": "São Paulo",
     "dependents": [],
@@ -400,7 +400,7 @@ const people = [
   {
     "id": "1948423398317",
     "name": "Evelyn Tânia Isabelly Silveira",
-    "birthdate": "1994-09-23",
+    "birthdate": "1994-09-23T00:00:00-00:00",
     "genre": "Female",
     "city": "Rio de Janeiro",
     "dependents": [],
@@ -418,7 +418,7 @@ const people = [
   {
     "id": "2048423699851",
     "name": "Gael Isaac Pereira",
-    "birthdate": "1993-04-08",
+    "birthdate": "1993-04-08T00:00:00-00:00",
     "genre": "Male",
     "city": "Curitiba",
     "dependents": [],
@@ -436,7 +436,7 @@ const people = [
   {
     "id": "2148423866631",
     "name": "Theo Matheus Hugo Melo",
-    "birthdate": "1987-04-03",
+    "birthdate": "1987-04-03T00:00:00-00:00",
     "genre": "Other",
     "city": "Curitiba",
     "dependents": [],
@@ -454,7 +454,7 @@ const people = [
   {
     "id": "2248423892070",
     "name": "Otávio Murilo Oliveira",
-    "birthdate": "1994-12-10",
+    "birthdate": "1994-12-10T00:00:00-00:00",
     "genre": "Male",
     "city": "Joinville",
     "dependents": [],
@@ -472,7 +472,7 @@ const people = [
   {
     "id": "2348424005030",
     "name": "Valentina Aurora Assis",
-    "birthdate": "1994-07-24",
+    "birthdate": "1994-07-24T00:00:00-00:00",
     "genre": "Female",
     "city": "Belém",
     "dependents": [],
