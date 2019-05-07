@@ -9,8 +9,10 @@ const select = table => db[table];
 const like = (records, field, value) => records.filter(record => record[field] && record[field].toLocaleLowerCase().includes(value.toLocaleLowerCase()));
 const where = (records, field, value) => records.filter(record => record[field] && record[field].toLocaleLowerCase() === value.toLocaleLowerCase());
 const find = (records, field, value) => records.find(record => record[field] === value);
+const findIndex = (records, field, value) => records.findIndex(record => record[field] === value);
 
 const insert = (table, record) => db[table].push(record);
+const update = (table, record, field, value) => db[table].splice(findIndex(db[table], field, value), 1, record);
 
 const removeDuplicates = records => records.filter((record, index, self) =>
   index === self.findIndex(r => (
@@ -137,6 +139,45 @@ module.exports  = function(app) {
     }
 
     insert('people', person);
+
+    res.status(201).send(person);
+  });
+
+  app.put(`${urlApiBase}/:id`, (req, res) => {
+    log(`PUT ${req.url}`); log(req.params); log(req.body);
+
+    const people = select('people');
+    const person = find(people, 'id', req.params.id);
+
+    if (!person) {
+      res.status(404).send(errorGetNotFound(`Person`));
+      return;
+    }
+
+    const errors = [];
+    const personUpdated = req.body || {};
+
+    if (person.name !== personUpdated.name) { errors.push('Name cannot be updated.'); }
+    if (person.email !== personUpdated.email) { errors.push('E-mail cannot be updated.'); }
+    if (person.status !== personUpdated.status) { errors.push('Status cannot be updated.'); }
+    if (person.status !== 'Active') { errors.push('Customer inactive cannot be updated.'); }
+
+    if (errors.length > 0) {
+      const errorMsg = responseMsg(400, 'Bad Request.', 'Invalid resource.');
+
+      errorMsg.details = [];
+
+      errors.forEach(error => errorMsg.details.push(responseMsg('0001', error, error)));
+
+      res.status(400).send(errorMsg);
+      return;
+    }
+
+    if (!(person.dependents instanceof Array)) {
+      person.dependents = [];
+    }
+
+    update('people', personUpdated, 'id', req.params.id);
 
     res.status(201).send(person);
   });

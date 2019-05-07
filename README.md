@@ -23,3 +23,11 @@ POST https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people
 
 { "name": "name", "email": "email@email.com", "status": "Active" }
 ```
+
+## Update a person
+
+```
+PUT https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people/:id
+
+{ "nickname": "Dude", "street": "Street X" }
+```
