@@ -31,3 +31,20 @@ PUT https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people/:id
 
 { "nickname": "Dude", "street": "Street X" }
 ```
+
+## Remove a lote of people
+
+```
+DELETE https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people
+
+[
+  { "id": 12345 },
+  { "id": 67890 }
+]
+```
+
+## Remove a person
+
+```
+DELETE https://sample-customers-api.herokuapp.com/api/thf-samples/v1/people/:id
+```

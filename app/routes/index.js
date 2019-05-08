@@ -13,6 +13,7 @@ const findIndex = (records, field, value) => records.findIndex(record => record[
 
 const insert = (table, record) => db[table].push(record);
 const update = (table, record, field, value) => db[table].splice(findIndex(db[table], field, value), 1, record);
+const remove = (table, field, value) => db[table].splice(findIndex(db[table], field, value), 1);
 
 const removeDuplicates = records => records.filter((record, index, self) =>
   index === self.findIndex(r => (
@@ -29,6 +30,7 @@ const currencyDate = () => new Intl.DateTimeFormat('pt-BR', dateOptions).format(
 
 const responseMsg = (code, message, detailedMessage) => ({ code, message, detailedMessage });
 const errorGetNotFound = (resource) => responseMsg(404, `${resource} not found.`, `${resource} not found in database.`);
+const errorDeleteNotFound = (resource) => responseMsg(400, `${resource} not found.`, `${resource} not found in database.`);
 
 const log = msg => console.log(`${currencyDate()}:`, msg);
 
@@ -180,6 +182,47 @@ module.exports  = function(app) {
     update('people', personUpdated, 'id', req.params.id);
 
     res.status(201).send(person);
+  });
+
+  app.delete(`${urlApiBase}`, (req, res) => {
+    log(`DELETE ALL ${req.url}`); log(req.body);
+
+    const people = select('people');
+    let deletePeople = 0;
+
+    req.body.forEach(person => {
+      const index = findIndex(people, 'id', person.id);
+
+      if (index > -1) {
+        people.splice(index, 1);
+        remove('people', 'id', index);
+        deletePeople++;
+      }
+    });
+
+    log(`Records deleted: ${deletePeople}`);
+
+    if (deletePeople > 0) {
+      res.sendStatus(204);
+    } else {
+      res.status(400).send(errorDeleteNotFound(`People`));
+    }
+  });
+
+  app.delete(`${urlApiBase}/:id`, (req, res) => {
+    log(`DELETE ${req.url}`); log(req.params);
+
+    const people = select('people');
+    const person = find(people, 'id', req.params.id);
+
+    if (!person) {
+      res.status(404).send(errorGetNotFound(`Person`));
+      return;
+    }
+
+    remove('people', 'id', req.params.id);
+
+    res.status(204).send(person);
   });
 
   app.all('/*', function(req, res) {
