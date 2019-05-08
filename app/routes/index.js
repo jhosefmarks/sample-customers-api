@@ -4,7 +4,7 @@ const urlApiBase = '/api/thf-samples/v1/people';
 
 let db;
 
-const initDB = () => db = Object.assign({}, database);
+const initDB = () => db = JSON.parse(JSON.stringify(database));
 
 const startPage = (page = 1, pageSize = 10) => (page - 1) * pageSize;
 const endPage = (page, pageSize) => startPage(page, pageSize) + pageSize;
@@ -44,7 +44,11 @@ module.exports  = function(app) {
   app.get(`${urlApiBase}/reload`, (req, res) => {
     log('RELOAD DB');
 
+    console.log(db);
+
     initDB();
+
+    console.log(db);
 
     res.sendStatus(200);
   })
