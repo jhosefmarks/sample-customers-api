@@ -1,6 +1,10 @@
-const db = require('../../db/db');
+const database = require('../../db/db');
 
 const urlApiBase = '/api/thf-samples/v1/people';
+
+let db;
+
+const initDB = () => db = Object.assign({}, database);
 
 const startPage = (page = 1, pageSize = 10) => (page - 1) * pageSize;
 const endPage = (page, pageSize) => startPage(page, pageSize) + pageSize;
@@ -34,7 +38,17 @@ const errorDeleteNotFound = (resource) => responseMsg(400, `${resource} not foun
 
 const log = msg => console.log(`${currencyDate()}:`, msg);
 
+initDB();
+
 module.exports  = function(app) {
+  app.get(`${urlApiBase}/reload`, (req, res) => {
+    log('RELOAD DB');
+
+    initDB();
+
+    res.sendStatus(200);
+  })
+
   app.get(`${urlApiBase}`, (req, res) => {
     log(`GET ${req.url}`); log(req.query);
 
